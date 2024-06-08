@@ -2,9 +2,9 @@ ssh bandit.labs.overthewire.org -p 2220 -l bandit0
 
 ---
 
-# ls
+### ls
 
-# cat readme
+### cat readme
 
 Level 0 -> Level 1
 Password found: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
@@ -16,9 +16,9 @@ password: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 
 "-" stands for standard output , hence cannot be used directly with cat, hence use cat ./-
 
-# ls
+### ls
 
-# cat ./-
+### cat ./-
 
 password found :rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
 
@@ -29,9 +29,9 @@ password : rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
 
 file contains spaces in its name hence use "" with cat
 
-# ls
+### ls
 
-# cat "spaces in this fielname"
+### cat "spaces in this fielname"
 
 password found: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
 
@@ -42,13 +42,11 @@ passsword: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
 
 hidden files present use ls . to show hidden files
 
-# ls
+### ls
 
-# cd inhere
+### ls .
 
-# ls .
-
-# cat .hidden
+### cat .hidden
 
 password found : 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 
@@ -59,11 +57,11 @@ password : 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 
 "Human readable" things are expected to be in ASCII form. so use file command to list the file type of all fiels
 
-# ls
+### ls
 
-# cd inhere
+### cd inhere
 
-# for i in $(ls) ; do file ./$i ; done
+### for i in $(ls) ; do file ./$i ; done
 
 password found:lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
 
@@ -72,13 +70,13 @@ password found:lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
 username : bandit5
 password :lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
 
-# ls
+### ls
 
-# cd inhere
+### cd inhere
 
-# for i in $(find -size 1033c ! -executable); do file ./$i ; done;
+### for i in $(find -size 1033c ! -executable); do file ./$i ; done;
 
-# cat ./.file02
+### cat ./.file02
 
 found in maybehere07/.file02
 
@@ -91,15 +89,15 @@ password : P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 
 return to home directory and then find according to gicven data
 
-# cd ./,.
+### cd ./,.
 
-# find -user bandit6 -group bandit7 -size 33c
+### find -user bandit6 -group bandit7 -size 33c
 
 (only one file with access permission)
 
-# cd ./var/lib/dpkg/info/
+### cd ./var/lib/dpkg/info/
 
-# cat bandit7.password
+### cat bandit7.password
 
 password found:z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
@@ -108,7 +106,7 @@ password found:z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 username : bandit7
 password : z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
-# grep "millionth" data.txt
+### grep "millionth" data.txt
 
 password found:TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
@@ -119,7 +117,7 @@ password : TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
 In order to use uniq -u command we need data file in sorted manner
 
-# sort data.txt | uniq -u
+sort data.txt | uniq -u
 
 password found: EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
@@ -130,13 +128,56 @@ password : EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
 Use strings command to extract non-binary data and then use grep command to find text adjacent to "=="
 
-# strings data.txt | grep -w "=="
+### strings data.txt | grep -w "=="
 
 password found:G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
 
 ---
 
 username : bandit10
+password : G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+
+Data is present in base64 encoded form . -d indicates data is to be decoded
+
+# base64 -d data.txt
+
+password found:6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+
+---
+
+username : bandit11
+password : 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+
+syntax of tr should be noted
+
+# cat data.txt | tr "A-Z" "N-ZA-M" | tr "a-z" "n-za-m"
+
+password found: JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+
+---
+
+username : bandit12
+password : JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+
+password found:
+
+---
+
+username : bandit13
+password :
+
+password found:
+
+---
+
+username : bandit14
+password :
+
+password found:
+
+---
+
+username : bandit15
 password :
 
 password found:
